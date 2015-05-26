@@ -1,0 +1,35 @@
+﻿
+<style type="text/css">
+   
+    .textElement {
+        border: none;
+    }
+
+ </style>
+
+<script type="text/javascript">
+    
+    function resize(textbox, offset) {
+        
+        if (!textbox.startW) {
+             textbox.startW = textbox.offsetWidth;
+        }
+
+        var style = textbox.style;
+        style.width = 0;
+        var desiredW = textbox.scrollWidth;
+        desiredW += offset;
+
+        style.width = Math.max(desiredW, textbox.startW) + 'px';
+    };
+    
+    function expand(textbox) {
+        resize(textbox, 5);
+    }
+
+</script>
+
+<script type="text/html" id="TextElement_template">
+    <input size="4" class="textElement" type="text" data-bind="value: Text, valueUpdate: 'afterkeydown'" onkeypress="expand(this);" onfocus="expand(this);" />
+</script>
+

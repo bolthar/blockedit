@@ -1,0 +1,45 @@
+﻿
+@{
+    Layout = null;    
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>BlockEdit</title>
+    <style type="text/css">
+        
+        html, input {
+            font-family: monospace;
+        }
+
+    </style>
+</head>
+<body>
+    @System.Web.Optimization.Scripts.Render("~/bundles/jquery")
+    @System.Web.Optimization.Scripts.Render("~/bundles/knockout")
+
+
+    <div id="noteControl">
+        <form data-bind="submit: addNote">
+            <div data-bind="visible: notes().length > 0">
+                <ul data-bind="foreach: notes">
+                    <li>
+                        <span data-bind="text: note.Name, click: onNoteClicked"></span>
+                    </li>
+                </ul>
+            </div><input data-bind='value: newNote, valueUpdate: "afterkeydown"' />
+            <button type="submit" data-bind="enable: newNote().length > 0">Add</button>
+        </form>
+    </div>
+    <div id="elementsControl">
+        <div data-bind="template: { name: selectTemplate, foreach: Elements }">
+        </div>
+    </div>
+    @System.Web.Optimization.Scripts.Render("~/bundles/note")
+    @System.Web.Optimization.Scripts.Render("~/bundles/element")
+    @System.Web.Optimization.Scripts.Render("~/bundles/shell")
+</body>
+</html>
